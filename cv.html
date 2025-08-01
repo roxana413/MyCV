@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roxana-Mihaela Timon - Software Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .title {
+            font-size: 1.3em;
+            color: #667eea;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .social-link:hover::before {
+            left: 100%;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .facebook { background: linear-gradient(135deg, #1877f2, #42a5f5); }
+        .instagram { background: linear-gradient(135deg, #e1306c, #fd1d1d, #f77737, #fcaf45); }
+        .linkedin { background: linear-gradient(135deg, #0077b5, #0099d4); }
+        .github { background: linear-gradient(135deg, #333, #666); }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.5s ease;
+        }
+
+        .section:hover h2::after {
+            width: 100%;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover, .education-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .experience-item h3, .education-item h3 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 8px;
+        }
+
+        .experience-item .company, .education-item .institution {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .experience-item .date, .education-item .date {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-list li:hover {
+            color: #667eea;
+            padding-left: 10px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .project-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .project-card p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .github-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .github-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .languages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .language-item {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .language-item:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .section {
+                padding: 25px;
+            }
+
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="profile-img">
+                <i class="fas fa-user"></i>
+            </div>
+            <h1>Roxana-Mihaela Timon</h1>
+            <p class="title">Software Developer | Master Student</p>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Iași, Romania</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span></span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="#" class="social-link facebook" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link instagram" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link linkedin" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/roxana413" class="social-link github" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="section">
+            <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
+            <div class="experience-item">
+                <h3>Research Assistant</h3>
+                <div class="company">"Alexandru-Ioan Cuza" University, Iași</div>
+                <div class="date">Present</div>
+                <p>Currently working on the <strong>AIPMDA</strong> research project - "An Interactive Proof Mode for Dafny", funded by Amazon Research Awards. The project aims to extend the Dafny programming language to facilitate the development of formally verified programs and develop an experimental interactive mode for creating correctness proofs. This innovative approach will simplify how beginners approach program verification and reduce the time needed for experts to create verified programs.</p>
+                <div class="project-tech">Project Focus: Formal Verification, Dafny, Interactive Proof Systems, Programming Language Development</div>
+            </div>
+            <div class="experience-item">
+                <h3>Analyst (Software Developer)</h3>
+                <div class="company">Expleo Group</div>
+                <div class="date">October 2022 - July 2025 · 2 yrs 10 mos</div>
+                <p>I create and maintain several software products used in the automotive industry. I mostly develop tooling software that check and validate the integrity of excel data sets for electronic diagnostic purposes. I am autonomous on the project, being able to master the entire process, working with requirements analysis, design, implementation, unit testing and close collaboration with the clients.</p>
+                <div class="project-tech">Key Skills: GitHub, Analytical Skills, Python, Data Structures, Programming, Debugging, Software Testing, Problem Solving, Communication, Mentoring</div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section">
+            <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="education-item">
+                <h3>Master's Degree - Advanced Studies in Computer Science (Informatics)</h3>
+                <div class="institution">"Alexandru-Ioan Cuza" University, Iași</div>
+                <div class="date">July 2024 - July 2026</div>
+                <div class="project-tech">Key Skills: Blockchain, Lean</div>
+            </div>
+            <div class="education-item">
+                <h3>Bachelor's Degree - Computer Science (Informatics)</h3>
+                <div class="institution">"Alexandru-Ioan Cuza" University, Iași</div>
+                <div class="date">2019 - 2022</div>
+                <p><strong>Grade:</strong> 9.37</p>
+                <p>In my bachelor's degree thesis, I implemented, specified and verified an algorithm for Weighted Job Scheduling Problem using dynamic programming in Dafny.</p>
+                <div class="project-tech">Key Skills: Haskell, Microsoft Visual Studio Code, C++, OOP, C, Java, PL/SQL, SQL, Dafny, R, HTML5, CSS, PHP, JavaScript, GitHub, Data Structures, Programming, Debugging, Software Testing, Mathematics, PyCharm, Visual Studio, Linux, Problem Solving, Analytical Skills, Communication, English</div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="section">
+            <h2><i class="fas fa-code"></i> Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>Python (Programming Language)</li>
+                        <li>C/C++</li>
+                        <li>Java</li>
+                        <li>JavaScript</li>
+                        <li>R (Programming Language)</li>
+                        <li>Haskell</li>
+                        <li>Dafny</li>
+                        <li>Coq</li>
+                        <li>PL/SQL</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-globe"></i> Web Development</h3>
+                    <ul class="skill-list">
+                        <li>HTML5</li>
+                        <li>CSS</li>
+                        <li>PHP</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Technical Skills</h3>
+                    <ul class="skill-list">
+                        <li>Programming</li>
+                        <li>Debugging</li>
+                        <li>Software Testing</li>
+                        <li>Data Mining</li>
+                        <li>Data Structures</li>
+                        <li>Object-Oriented Programming (OOP)</li>
+                        <li>GitHub</li>
+                        <li>Microsoft Office Suite</li>
+                        <li>PyCharm</li>
+                        <li>Visual Studio</li>
+                        <li>Microsoft Visual Studio Code</li>
+                        <li>Linux</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-users"></i> Soft Skills</h3>
+                    <ul class="skill-list">
+                        <li>Communication</li>
+                        <li>Organization</li>
+                        <li>Team-oriented</li>
+                        <li>Responsible</li>
+                        <li>Reliable</li>
+                        <li>Punctual</li>
+                        <li>Problem Solving</li>
+                        <li>Analytical Skills</li>
+                        <li>Mentoring</li>
+                        <li>Mathematics</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> Cloud & Emerging Technologies</h3>
+                    <ul class="skill-list">
+                        <li>Amazon Web Services (AWS)</li>
+                        <li>Azure</li>
+                        <li>Blockchain</li>
+                        <li>Lean</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-microscope"></i> Research & Formal Methods</h3>
+                    <ul class="skill-list">
+                        <li>Formal Verification</li>
+                        <li>Dafny Programming Language</li>
+                        <li>Interactive Proof Systems</li>
+                        <li>Computer-Aided Design</li>
+                        <li>Academic Research</li>
+                        <li>Conference Presentations</li>
+                        <li>Algorithm Verification</li>
+                        <li>Competition Programming</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="section">
+            <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>AIPMDA - An Interactive Proof Mode for Dafny</h3>
+                    <p><strong>Amazon Research Awards Funded Project</strong> - Currently working on extending the Dafny programming language to facilitate formally verified program development. Developing an experimental interactive mode for creating correctness proofs that will simplify program verification for beginners and reduce development time for experts.</p>
+                    <div class="project-tech">Technologies: Dafny, Formal Verification, Interactive Proof Systems</div>
+                    <a href="#" class="github-link">
+                        <i class="fas fa-university"></i> University Research Project
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Weighted Job Scheduling Problem Verification</h3>
+                    <p>Verification of an algorithm that solves the Weighted Job Scheduling Problem using dynamic programming in Dafny. This project represented my bachelor's degree thesis and demonstrates expertise in formal program verification.</p>
+                    <div class="project-tech">Technologies: Dafny</div>
+                    <a href="#" class="github-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Console Shopper</h3>
+                    <p>Client-server application implemented using TCP/IP protocol in C language. Simulates a console-based shopping system with real-time communication.</p>
+                    <div class="project-tech">Technologies: C, TCP/IP</div>
+                    <a href="#" class="github-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Jumpin'</h3>
+                    <p>Game developed in C++ that implements platformer mechanics with various levels and obstacles. Focus on object-oriented programming and memory management.</p>
+                    <div class="project-tech">Technologies: C++</div>
+                    <a href="#" class="github-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Karnaugh Diagrams</h3>
+                    <p>Python application for generating and solving Karnaugh diagrams, used for simplifying Boolean logic functions in digital electronics.</p>
+                    <div class="project-tech">Technologies: Python</div>
+                    <a href="#" class="github-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="section">
+            <h2><i class="fas fa-language"></i> Languages</h2>
+            <div class="languages">
+                <div class="language-item">
+                    <h3>Romanian</h3>
+                    <p>Native Language</p>
+                </div>
+                <div class="language-item">
+                    <h3>English</h3>
+                    <p>B2 Level</p>
+                    <small>Listening, Reading, Speaking, Writing</small>
+                </div>
+                <div class="language-item">
+                    <h3>French</h3>
+                    <p>B1-B2 Level</p>
+                    <small>Reading B2, Others B1</small>
+                </div>
+                <div class="language-item">
+                    <h3>Italian</h3>
+                    <p>Basic Level</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="section">
+            <h2><i class="fas fa-certificate"></i> Certifications & Achievements</h2>
+            <div class="education-item">
+                <h3>VerifyThis 2025 Competition</h3>
+                <div class="institution">International Program Verification Competition</div>
+                <div class="date">2025</div>
+                <p>Participated in the prestigious VerifyThis competition, an international program verification competition where participants verify challenging algorithms and data structures using formal methods and verification tools.</p>
+                <div class="project-tech">Focus: Program Verification, Formal Methods, Algorithm Verification, Competition Programming</div>
+            </div>
+            <div class="education-item">
+                <h3>FMCAD 2024 Conference - Lightning Talk</h3>
+                <div class="institution">Prague, Czech Republic</div>
+                <div class="date">2024</div>
+                <p>Participated in the Formal Methods in Computer-Aided Design (FMCAD) 2024 conference with a lightning talk presentation, showcasing research work in formal verification and computer-aided design methods.</p>
+                <div class="project-tech">Focus: Formal Methods, Computer-Aided Design, Research Presentation</div>
+            </div>
+            <div class="education-item">
+                <h3>NLP - Natural Language Processing with Python</h3>
+                <div class="institution">Udemy</div>
+                <div class="date">Issued November 2024</div>
+                <p>Advanced certification in Natural Language Processing using Python, covering text analysis, sentiment analysis, and machine learning applications.</p>
+            </div>
+            <div class="education-item">
+                <h3>Master Data Engineering using Azure Data Analytics</h3>
+                <div class="institution">Udemy</div>
+                <div class="date">Issued April 2024</div>
+                <p>Comprehensive course for developing data engineering skills using Microsoft Azure technologies.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling and interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate sections on scroll
+            const sections = document.querySelectorAll('.section');
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+
+            // Add click effect to project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.classList.contains('github-link')) {
+                        this.style.transform = 'scale(0.98)';
+                        setTimeout(() => {
+                            this.style.transform = '';
+                        }, 150);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
